@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    blog detail
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>{{blog.user.username}} </h1>
+
+<img src="{{blog.blog_image.url}}" alt="">
+<p>{{blog.text}}</p>
+
+
+{% endblock %}

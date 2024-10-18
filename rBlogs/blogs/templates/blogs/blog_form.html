@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    all blogs
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to rBlogs</h1>
+
+<h2>
+    {%if form.instance.pk %}
+    Edit blog
+    {%else%}
+    Add new Blog
+    {%endif%}
+</h2>
+
+<form method="POST" enctype="multipart/form-data" class="form">
+{% csrf_token %}
+ {{ form.as_p }}
+
+ <button class="btn btn-warning" type="submit">submit</button>
+ <a href="{% url "all_blogs" %}">Back to Blogs</a>
+</form>
+
+
+{% endblock content %}

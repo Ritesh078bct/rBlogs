@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search result
+{% endblock title %}
+
+{% block content %}
+
+
+{% if query %}
+    <div>
+        <div>
+        <!-- check if there is a result in the database-->
+        {% if blogs %}
+            <!-- loop through search query if there is a result -->
+            <div class="container row gap-3 mt-4">
+                {% for blog in blogs %}
+                
+                <div class="card pt-3 " style="width: 18rem;">
+                    <img src="{{blog.blog_image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{blog.user.username}}</h5>
+                      <p class="card-text">{{blog.text}}</p>
+                      <a href="{% url "blog_detail" blog.id%}" class="text">read more..</a>
+                      {% comment %} {% if blog.user == user %}
+                      <a href="{% url "edit_blog" blog.id%}" class="btn btn-success">edit</a>
+                      <a href="{% url "delete_blog" blog.id%}" class="btn btn-danger">delete</a>
+                      {% endif %} {% endcomment %}
+                    </div>
+                  </div>
+                
+                {% endfor %}
+                </div>
+            <!-- return a message if there are no results found. -->
+        {% else %}
+            <h3>No search results found</h3>
+        {% endif %}
+        </div>
+    </div>
+{% else %}
+    <h1>Please enter a search query</h1>
+{% endif %}
+
+
+{% endblock %}
